@@ -1,0 +1,5 @@
+String
+(i)Multiline String
+'''Hello
+my name is
+Amandeep'''
