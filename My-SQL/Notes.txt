@@ -1,0 +1,56 @@
+****Difference between Server and Database??****
+Server processes requests and database stores the data.
+
+
+****Difference Between char() and varchar()??****
+
+-> Char()
+(i) It is of fixed length.
+(ii) If Char(10) is defined and "AMAN" is stored in it, then the remaining 6 spaces will always be added.
+(iii) The total storage will always remain the same.
+(iv) It is faster than varchar().
+(v) It is used for fixed-length data.
+
+-> Varchar()
+(i) It is of variable length.
+(ii) It stores only the actual data entered.
+(iii) No extra spaces are added.
+(iv) Storage depends on the length of the data.
+(v) It is more space efficient than char().
+
+--------------------------------------------------
+
+****BLOB Datatype****
+
+(i) BLOB stands for Binary Large Object.
+(ii) It is used to store large binary data.
+(iii) Data is stored in the form of bytes.
+(iv) Examples:- Images, Audio, Video, PDF files.
+
+--------------------------------------------------
+
+****Types of SQL Commands****
+
+(i) DDL (Data Definition Language)
+    -> CREATE
+    -> ALTER
+    -> RENAME
+    -> TRUNCATE
+    -> DROP
+
+(ii) DQL (Data Query Language)
+    -> SELECT
+
+(iii) DML (Data Manipulation Language)
+    -> INSERT
+    -> UPDATE
+    -> DELETE
+
+(iv) DCL (Data Control Language)
+    -> GRANT
+    -> REVOKE
+
+(v) TCL (Transaction Control Language)
+    -> COMMIT
+    -> ROLLBACK
+    -> SAVEPOINT
