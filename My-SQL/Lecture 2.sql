@@ -184,3 +184,65 @@ patients ON
 province_names.province_id = patients.province_id
 GROUP BY province_name
 order by patient_count DESC;
+
+
+select concat(p.first_name, " ", p.last_name) as patient_name, a.diagnosis, concat(d.first_name, " ", d.last_name) as doctor_name
+from patients p
+Inner JOIN admissions a
+on	p.patient_id = a.patient_id
+INNER JOIN doctors d
+ON a.attending_doctor_id = d.doctor_id;
+
+
+select first_name, last_name, Count(patient_id) as num_of_duplicates
+from patients
+group by first_name, last_name
+having count(patient_id) > 1;
+
+
+select concat(first_name, " ", last_name) as patient_name,
+ROUND(height / 30.48, 1) as height_Feet,
+ROUND(weight * 2.205) as weight_Pounds,
+birth_date,
+	CASE
+        WHEN gender = 'M' THEN 'MALE'
+        WHEN gender = 'F' THEN 'FEMALE'
+        ELSE 'UNKNOWN'
+    END AS gender_type
+from patients;
+
+select * from patients;
+
+select patient_id, first_name, last_name
+from patients where patient_id NOT IN(
+SELECT patient_id from admissions);
+
+select * from admissions;
+
+SELECT
+    MAX(daily_visits) AS max_visits,
+    MIN(daily_visits) AS min_visits,
+    ROUND(AVG(daily_visits), 2) AS average_visits
+FROM (
+    SELECT admission_date, COUNT(*) AS daily_visits
+    FROM admissions
+    GROUP BY admission_date
+) AS daily_counts;
+
+
+select concat(p.first_name, " ", p.last_name) as patient_name,
+a.admission_date, concat(d.first_name, " ", d.last_name) as doctor_name
+from patients p
+INNER JOIN admissions a
+ON p.patient_id = a.patient_id
+INNER JOIN doctors d
+ON a.attending_doctor_id = d.doctor_id
+WHERE a.admission_date = (
+    SELECT MAX(a2.admission_date)
+    FROM admissions a2
+    WHERE a2.patient_id = p.patient_id
+);
+
+
+
+
