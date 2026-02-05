@@ -1,0 +1,60 @@
+# Introduction to flask
+--It is a framework which is used to create web applications.
+--It has built-in things through which we can create website in a very less time.
+
+# Intializing our first web page on flask
+@app.route('/amandeep') # It provides direction where you want to go (HomePage), Whenever you will hit this home() will be called, It is like a decorator whenever someone visits /, call the function below
+
+
+from flask import Flask, redirect , url_for, session, Response, request
+
+app = Flask(__name__) # This intializes our application
+app.secret_key = 'supersecretkey'
+
+@app.route('/', methods = ['POST', 'GET'])
+
+def login():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        if username == 'amandeep' and password == '123':
+            session['user'] = username
+            return redirect(url_for('welcome'))
+        else:
+            return Response('Invalid credentials ', 401)
+        
+    return '''
+        <h2> Login page </h2>
+        <form method = "post">
+            Username: <input type = "text" name = "username"><br>
+            Password: <input type = "password" name = "password"><br>
+            <input type = "submit" value = "Login">
+        </form>
+    '''
+
+@app.route('/welcome')
+def welcome():
+    if 'user' in session:
+        return f'''
+        <h2>Welcome, {session["user"]}!</h2>
+        <a href = {url_for('logout')}>Logout</a>
+        '''
+    return redirect(url_for('login'))
+
+@app.route('/logout')
+def logout():
+    session.pop('user', None)
+    return redirect(url_for('login'))
+
+->Linking Templates
+Create a template folder and inside it create a new html page.
+For linking part:
+    --On app.py import render_template from Flask and isntead of returning HELLO WORLD(return render_template("hello.html"))
+    from flask import render_template
+    return render_template("hello.html")
+
+
+->Manual Form Handling
+
+
+->Jinja Templates
