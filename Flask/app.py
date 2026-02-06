@@ -1,6 +1,12 @@
 from flask import Flask, render_template, request, redirect, url_for
+import sqlite3
 
 app = Flask(__name__)
+
+def get_db_connection():
+    conn = sqlite3.connect('users.db')
+    conn.row_factory = sqlite3.Row
+    return conn
 
 @app.route('/dashbord')
 
@@ -63,39 +69,42 @@ def contact():
     return render_template('contact.html')
 
 
-students_data = []
-
+# ---------- REGISTER PAGE ----------
 @app.route('/', methods=['GET', 'POST'])
 def register():
+    error = None
+
     if request.method == 'POST':
         name = request.form.get('name')
         email = request.form.get('email')
-        course = request.form.get('course')
 
-        # 🔴 Email validation
+        # Email validation
         if '@' not in email:
             error = "Invalid email address. '@' is required."
 
         else:
-            student = {
-                'name': name,
-                'email': email,
-                'course': course
-            }
+            conn = get_db_connection()
+            conn.execute(
+                "INSERT INTO users (name, email) VALUES (?, ?)",
+                (name, email)
+            )
+            conn.commit()
+            conn.close()
 
-            students_data.append(student)
             return redirect(url_for('students'))
 
-    return render_template('register.html')
+    return render_template('register.html', error=error)
 
 
+# ---------- STUDENTS PAGE ----------
 @app.route('/students')
 def students():
-    return render_template('students.html', students=students_data)
+    conn = get_db_connection()
+    students = conn.execute("SELECT * FROM users").fetchall()
+    conn.close()
 
-
+    return render_template('students.html', students=students)
 
 
 if __name__ == "__main__":
     app.run(debug=True)
-
