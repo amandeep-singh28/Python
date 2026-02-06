@@ -1,20 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+{% block content %}
 
-<body>
-    <h2>Students List</h2>
+<h2>Registered Students</h2>
 
-    <ul>
-        {% for student in students %}
-        <li>{{ loop.index }}. {{ student }}</li>
-        {% endfor %}
-    </ul>
-</body>
+{% if students %}
+<table border="1" cellpadding="8">
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Course</th>
+    </tr>
 
-</html>
+    {% for student in students %}
+    <tr>
+        <td>{{ student.name }}</td>
+        <td>{{ student.email }}</td>
+        <td>{{ student.course }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No students registered yet.</p>
+{% endif %}
+
+{% endblock %}

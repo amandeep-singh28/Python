@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
@@ -24,8 +24,8 @@ def if_condition():
     number = 430    
     return render_template('if.html', number = number)
 
-@app.route('/students')
-def students():
+@app.route('/student')
+def student():
     students = ['Alex', 'Bob', 'Charlie']
     return render_template('students.html', students=students)
 
@@ -50,7 +50,7 @@ def filters():
     return render_template('filters.html', name=name, skills=skills)
 
 
-@app.route('/')
+@app.route('/index')
 def index():
     return render_template('index.html')
 
@@ -61,6 +61,39 @@ def home():
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
+
+
+students_data = []
+
+@app.route('/', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        email = request.form.get('email')
+        course = request.form.get('course')
+
+        # 🔴 Email validation
+        if '@' not in email:
+            error = "Invalid email address. '@' is required."
+
+        else:
+            student = {
+                'name': name,
+                'email': email,
+                'course': course
+            }
+
+            students_data.append(student)
+            return redirect(url_for('students'))
+
+    return render_template('register.html')
+
+
+@app.route('/students')
+def students():
+    return render_template('students.html', students=students_data)
+
+
 
 
 if __name__ == "__main__":
