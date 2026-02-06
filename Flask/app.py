@@ -34,6 +34,15 @@ def marks():
     score = 50
     return render_template('marks.html', score=score)
 
+@app.route('/products')
+def products():
+    products = [
+        {'name': 'Laptop', 'price': 50000},
+        {'name': 'Phone', 'price': 20000},
+        {'name': 'Tablet', 'price': 30000}
+    ]
+    return render_template('products.html', products=products)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
