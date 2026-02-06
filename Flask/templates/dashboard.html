@@ -10,7 +10,7 @@
 <body>
 
     <h1>Dashboard</h1>
-
+    
     <!-- Display user's name -->
     <h2>Hello, {{ user.name }}</h2>
 
@@ -28,6 +28,20 @@
         <li>{{ hobby }}</li>
         {% endfor %}
     </ul>
+    
+
+    <h1>{{ l1 }}</h1>
+    <ul>
+        {% for num in l1 %}
+        <li>{{ num }}</li>
+        {% endfor %}
+    </ul>
+
+    {% if number == 430 %}
+        <h1>Code is 430</h1>
+    {% else %}
+        <h1>Code is not correct</h1>
+    {% endif %}
 
 </body>
 
