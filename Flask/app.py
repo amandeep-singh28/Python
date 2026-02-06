@@ -43,6 +43,13 @@ def products():
     ]
     return render_template('products.html', products=products)
 
+@app.route('/filters')
+def filters():
+    name = "amandeep"
+    skills = ['Python', 'Flask', 'SQL']
+    return render_template('filters.html', name=name, skills=skills)
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
