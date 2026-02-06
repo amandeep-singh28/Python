@@ -16,9 +16,9 @@
 
     <!-- Conditional rendering -->
     {% if user.logged_in %}
-    <p>Status: Logged In</p>
+        <p>Status: Logged In</p>
     {% else %}
-    <p>Status: Logged Out</p>
+        <p>Status: Logged Out</p>
     {% endif %}
 
     <!-- Loop through hobbies -->
@@ -29,20 +29,6 @@
         {% endfor %}
     </ul>
     
-
-    <h1>{{ l1 }}</h1>
-    <ul>
-        {% for num in l1 %}
-        <li>{{ num }}</li>
-        {% endfor %}
-    </ul>
-
-    {% if number == 430 %}
-        <h1>Code is 430</h1>
-    {% else %}
-        <h1>Code is not correct</h1>
-    {% endif %}
-
 </body>
 
 </html>
