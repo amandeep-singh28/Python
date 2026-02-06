@@ -11,8 +11,7 @@ def dashboard():
         'hobbies' : ['Reading', 'Cycling', 'Gaming']
     }
 
-    number = 430
-    return render_template('dashboard.html', user = user, number = number)
+    return render_template('dashboard.html', user = user)
 
 
 @app.route('/loop')
@@ -22,8 +21,14 @@ def loop():
 
 @app.route('/if')
 def if_condition():
-    number = 430
+    number = 430    
     return render_template('if.html', number = number)
+
+@app.route('/students')
+def students():
+    students = ['Alex', 'Bob', 'Charlie']
+    return render_template('students.html', students=students)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
