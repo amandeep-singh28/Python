@@ -25,5 +25,20 @@ def home():
         db.session.commit()
     return render_template('index.html')
 
+@app.route("/update", methods = ["POST", "GET"])
+def update():
+    if request.method == "POST":
+        sno = request.form.get("sno")
+        username = request.form.get("username")
+        password = request.form.get("password")
+        user = User.query.filter_by(sno = sno).first()
+        if user:
+            user.username = username
+            user.password = password
+            db.session.add(user)
+            db.session.commit()
+    return render_template("update.html")
+
+
 if __name__ == "__main__":
     app.run(debug = True)
