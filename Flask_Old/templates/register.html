@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Student Registration</h2>
+
+<form method="post">
+
+    <label>Name:</label><br>
+    <input type="text" name="name" required><br><br>
+
+    <label>Email:</label><br>
+    <input type="email" name="email" required><br><br>
+
+    <label>Course:</label><br>
+    <select name="course" required>
+        <option value="">-- Select --</option>
+        <option value="Computer Science">Computer Science</option>
+        <option value="Information Technology">Information Technology</option>
+        <option value="Business Administration">Business Administration</option>
+        <option value="Engineering">Engineering</option>
+    </select><br><br>
+
+    <button type="submit">Register</button>
+
+</form>
+
+{% endblock %}
