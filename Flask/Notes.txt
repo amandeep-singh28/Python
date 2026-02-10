@@ -63,3 +63,17 @@ For linking part:
 ->SQLALCHEMY
 It is a python library which acts as a bridge between sql database and python applciations. It uses python code to extract the data from the database.
 pipenv install flask-sqlalchemy
+
+****Flask Sessions****
+Flask session remembers a user across multiple web pages.
+->Used for login/logout
+->Stores user-related data (like user id, username)
+->One session per user (per browser)
+->Helps the website know who is logged in
+
+*****SQLALCHEMY Sessions****
+SQLAlchemy session manages database operations for objects.
+->Used to insert, update, delete data
+->Tracks database changes before saving
+->Not related to web pages or users directly
+->Works per database transaction, not per website user
