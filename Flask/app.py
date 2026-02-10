@@ -39,6 +39,16 @@ def update():
             db.session.commit()
     return render_template("update.html")
 
+@app.route("/delete", methods = ["POST", "GET"])
+def delete():
+    if request.method == "POST":
+        sno = request.form.get("sno")
+        user = User.query.filter_by(sno = sno).first()
+        if user:
+            db.session.delete(user)
+            db.session.commit()
+    return render_template("delete.html")
+
 
 if __name__ == "__main__":
     app.run(debug = True)
