@@ -58,3 +58,8 @@ For linking part:
 
 
 ->Jinja Templates
+
+
+->SQLALCHEMY
+It is a python library which acts as a bridge between sql database and python applciations. It uses python code to extract the data from the database.
+pipenv install flask-sqlalchemy
