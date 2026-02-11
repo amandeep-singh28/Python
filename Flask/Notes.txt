@@ -77,3 +77,52 @@ SQLAlchemy session manages database operations for objects.
 ->Tracks database changes before saving
 ->Not related to web pages or users directly
 ->Works per database transaction, not per website user
+
+->Function of ORM(Object Relational Mapper)
+It maps the databases table to other programming languages such as Python so that the developer can interact with the database using object oriented programming instead of SQL.
+
+
+with app.app_context():
+    db.create_all()
+
+1. What is db.create_all()?
+
+- It creates all tables defined in your models.
+- If a table does NOT exist → it creates it.
+- If a table already exists → it does nothing.
+- It does NOT modify existing tables.
+- It does NOT delete columns.
+- It does NOT update schema.
+
+2. Do we need to write db.create_all() every time?
+
+NO.
+You only need ONE db.create_all() in your project.
+
+Example:
+
+with app.app_context():
+    db.create_all()
+
+After that:
+- If you add a new model, just run the app again.
+- It will automatically create only the new table.
+
+3. Important Rule
+
+Every model must have at least one primary key.
+
+Example:
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(200))
+
+Without primary key → SQLAlchemy will give an error.
+
+4. Limitation
+
+If you change an existing table (add/remove columns),
+db.create_all() will NOT update it.
+
+For schema changes, use Flask-Migrate.
