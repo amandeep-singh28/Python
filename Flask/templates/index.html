@@ -8,20 +8,18 @@
 </head>
 
 <body>
-    <h2>Login Page</h2>
+    <h2>User Registration Form</h2>
 
-    {% if error %}
-    <p style="color: red;">{{ error }}</p>
-    {% endif %}
+    <form method="POST" enctype="multipart/form-data">
 
-    <form method="POST">
-        <label for="username">Username:</label>
-        <input type="text" name="username" placeholder="Enter your username"><br><br>
-        
-        <label for="password">Passowrd:</label>
-        <input type="password" name="password" placeholder="Enter your password"><br><br>
+        <label for="email">Username:</label><br>
+        <input type="text" name="email" required><br><br>
 
-        <input type="submit" value="Login">
+        <label for="image">Upload Image:</label><br>
+        <input type="file" name="image" accept="image/*"><br><br>
+
+        <button type="submit">Submit</button>
+
     </form>
 </body>
 
