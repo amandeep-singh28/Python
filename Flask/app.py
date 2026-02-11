@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, session, request, flash, url_for
 from flask_sqlalchemy import SQLAlchemy
+import base64
 
 app = Flask(__name__)
 
@@ -43,6 +44,19 @@ def home():
         return redirect('/')
 
     return render_template("index.html")
+
+@app.route('/database')
+def database():
+    users = User.query.all()
+
+    for user in users:
+        if user.image:
+            user.image = base64.b64encode(user.image).decode('utf-8')
+        else:
+            user.image = None
+
+    return render_template("database.html", users=users)
+
 
 
 # -------------------- LOGOUT (optional) --------------------

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>All Registered Users</h2>
+
+    {% if users %}
+    {% for user in users %}
+    <div style="margin-bottom: 30px; padding:10px; border:1px solid black;">
+
+        <h3>{{ user.username }}</h3>
+
+        {% if user.image %}
+        <img src="data:image/jpeg;base64,{{ user.image }}" width="250" style="border:1px solid gray;">
+        {% else %}
+        <p>No image uploaded</p>
+        {% endif %}
+
+    </div>
+    {% endfor %}
+    {% else %}
+    <p>No users found.</p>
+    {% endif %}
+
+    <br>
+    <a href="/">Go Back</a>
+
+</body>
+
+</html>
