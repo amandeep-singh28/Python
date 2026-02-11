@@ -126,3 +126,49 @@ If you change an existing table (add/remove columns),
 db.create_all() will NOT update it.
 
 For schema changes, use Flask-Migrate.
+
+
+->>>>>PASSWORD STORAGE SECURITY NOTES
+================================
+
+1. Never Store Plain Text Passwords
+
+Storing passwords directly in the database (e.g., "123456") is dangerous.
+If the database is leaked or hacked, all user credentials are exposed.
+
+2. Why It Is Dangerous
+
+- Hackers can immediately see user passwords.
+- Users often reuse passwords on other websites.
+- It can lead to account takeovers and major security breaches.
+
+3. Correct Approach: Hashing
+
+Instead of storing the actual password, store a hashed version.
+
+Example using Werkzeug:
+
+from werkzeug.security import generate_password_hash, check_password_hash
+
+hashed_password = generate_password_hash("user_password")
+
+Store 'hashed_password' in the database instead of the original password.
+
+4. During Login
+
+Use:
+
+check_password_hash(stored_hash, entered_password)
+
+This securely verifies the password without ever revealing it.
+
+5. Important Rules
+
+- Never store plain passwords.
+- Never log passwords.
+- Never send passwords in API responses.
+- Always use secure hashing (bcrypt / pbkdf2).
+
+Conclusion:
+Passwords must always be hashed before storing in the database.
+"""
