@@ -1,8 +1,11 @@
 from flask import Flask, request, render_template
 from flask_sqlalchemy import SQLAlchemy
+from flask_bcrypt import Bcrypt
+
 
 
 app = Flask(__name__)
+bcrypt = Bcrypt(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db = SQLAlchemy(app)
@@ -20,7 +23,8 @@ def home():
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
-        new_user = User(username = username, password = password)
+        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+        new_user = User(username = username, password = hashed_password)
         db.session.add(new_user)
         db.session.commit()
     return render_template('index.html')
