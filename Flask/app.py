@@ -1,58 +1,73 @@
-from flask import Flask, request, render_template
+from flask import Flask, render_template, redirect, session, request, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 
-
-
 app = Flask(__name__)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///user.db'
+app.config['SECRET_KEY'] = 'secret_key'
+
+db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
-db = SQLAlchemy(app)
-
 class User(db.Model):
-    sno = db.Column(db.Integer, primary_key = True)
-    username = db.Column(db.String(200), nullable = True)
-    password = db.Column(db.String(200), nullable = True)
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(50), unique=True, nullable=False)
+    password = db.Column(db.String(255), nullable=False)  # ✅ FIX
 
 with app.app_context():
     db.create_all()
 
-@app.route("/", methods = ["POST", "GET"])
+@app.route('/')
 def home():
-    if request.method == "POST":
-        username = request.form.get("username")
-        password = request.form.get("password")
+    if 'user' in session:
+        return f"Welcome {session['user']}!"
+    return redirect('/login')
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['email']
+        password = request.form['password']
+
+        user = User.query.filter_by(username=username).first()
+
+        if user and bcrypt.check_password_hash(user.password, password):
+            session['user'] = user.username  # ✅ FIX
+            return redirect('/')
+
+        flash("Invalid credentials")
+
+    return render_template('login.html')
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        username = request.form['email']
+        password = request.form['password']
+
+        if User.query.filter_by(username=username).first():
+            flash("User already exists")
+            return redirect('/register')
+
         hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
-        new_user = User(username = username, password = hashed_password)
+
+        new_user = User(
+            username=username,
+            password=hashed_password
+        )
+
         db.session.add(new_user)
         db.session.commit()
-    return render_template('index.html')
 
-@app.route("/update", methods = ["POST", "GET"])
-def update():
-    if request.method == "POST":
-        sno = request.form.get("sno")
-        username = request.form.get("username")
-        password = request.form.get("password")
-        user = User.query.filter_by(sno = sno).first()
-        if user:
-            user.username = username
-            user.password = password
-            db.session.add(user)
-            db.session.commit()
-    return render_template("update.html")
+        return redirect('/login')
 
-@app.route("/delete", methods = ["POST", "GET"])
-def delete():
-    if request.method == "POST":
-        sno = request.form.get("sno")
-        user = User.query.filter_by(sno = sno).first()
-        if user:
-            db.session.delete(user)
-            db.session.commit()
-    return render_template("delete.html")
+    return render_template('register.html')
 
+@app.route('/logout')
+def logout():
+    session.pop('user', None)
+    return redirect('/login')
 
 if __name__ == "__main__":
-    app.run(debug = True)
+    app.run(debug=True)
