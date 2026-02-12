@@ -1,0 +1,7 @@
+Django uses MVT (Model view template)
+user send request
+url matches view
+view processes logic
+model interacts iwht database
+template renders HTML
+Response returned to browser
