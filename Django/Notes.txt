@@ -19,7 +19,7 @@ Every application has some apps, we create views for app and than we link the ur
 
 ->Created a superuser and admin portal
 Firstly you have to run this command (python manage.py migrate)
-and than you need to create the superuser (python manage.py createsupersuper)
+and than you need to create the superuser (python manage.py createsuperuser)
 than run the server and on the link search /admin/ (python manage.py runserver)
 
 Django Admin & Superuser – Short Notes
@@ -101,3 +101,66 @@ In admin.py
     @admin.register(Student)
     class StudentAdmin(admin.ModelAdmin):
         list_display = ('name', 'email', 'age', 'branch')
+
+->How to upload image
+(i)In your project settings.py, at the end write this code
+import os
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+(ii)In your app models.py add this code (Whatever image will be uploaded, it will get stored in that folder)
+image = models.ImageField(upload_to = 'students/', null = True, blank = True)
+
+->Now how to see the image on html
+Add this code in your app urls.py
+
+from django.conf import settings
+from django.conf.urls.static import static
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+->.html code
+    <h2>Student Details</h2>
+
+    {% for student in students %}
+    <p><strong>Name:</strong> {{ student.name }}</p>
+    <p><strong>Email:</strong> {{ student.email }}</p>
+    <p><strong>Age:</strong> {{ student.age }}</p>
+    <p><strong>Branch:</strong> {{ student.get_branch_display }}</p>
+
+    {% if student.image %}
+    <img src="{{ student.image.url }}" width="200">
+    {% else %}
+    <p>No Image Uploaded</p>
+    {% endif %}
+
+    <hr>
+    {% endfor %}
+
+->app views.py
+from django.shortcuts import render
+from .models import Student
+
+def show_students(request):
+    students = Student.objects.all()
+    return render(request, "form.html", {"students": students})
+
+->app urls.py
+from django.urls import path
+from . import views
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns = [
+
+    # path('student/<str:name>/',views.home, name = 'student')
+    path('students/', views.show_students, name='students'),
+
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+    
