@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from .models import Student
 # Create your views here.
 # def home(request, name):
 #     context = {
@@ -7,13 +7,9 @@ from django.shortcuts import render
 #     }
 #     return render(request, 'index_app.html', context)
 
-def home(request):
-    name = ""
-
-    if request.method == "POST":
-        name = request.POST.get("name")
-
-    return render(request, "form.html", {"name": name})
+def show_students(request):
+    students = Student.objects.all()
+    return render(request, "form.html", {"students": students})
 
 
     
