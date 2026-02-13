@@ -5,3 +5,14 @@ view processes logic
 model interacts iwht database
 template renders HTML
 Response returned to browser
+
+->How to connect templates
+Go to settings.py, inside TEMPLATES, write this
+    "DIRS": ["templates"]
+
+->How to render templates
+Add this function in views.py
+def say_goodmorning(request):
+    return render(request, 'index.html')
+
+Every application has some apps, we create views for app and than we link the url in the app, but we also need to link the url with the application.
