@@ -16,3 +16,58 @@ def say_goodmorning(request):
     return render(request, 'index.html')
 
 Every application has some apps, we create views for app and than we link the url in the app, but we also need to link the url with the application.
+
+->Created a superuser and admin portal
+Firstly you have to run this command (python manage.py migrate)
+and than you need to create the superuser (python manage.py createsupersuper)
+than run the server and on the link search /admin/ (python manage.py runserver)
+
+Django Admin & Superuser – Short Notes
+
+1. migrate:
+Command: python manage.py migrate
+- Creates database tables.
+- Required for authentication and admin system.
+
+2. createsuperuser:
+Command: python manage.py createsuperuser
+- Creates an admin account with full permissions.
+- Allows access to the admin panel.
+
+3. runserver:
+Command: python manage.py runserver
+- Starts the development server.
+
+4. Admin Panel:
+URL: http://127.0.0.1:8000/admin/
+- Login using superuser credentials.
+- Manage users and models (Add, Edit, Delete).
+
+Django Admin is a built-in powerful tool that provides automatic CRUD operations and user management without writing extra frontend code.
+
+->Users and groups
+
+Django Users and Groups – Short Notes
+
+1. Users:
+- Represents individual accounts.
+- Stores username, password (hashed), email, etc.
+- Types:
+  • Normal User – No admin access.
+  • Staff User – Can access admin panel (limited permissions).
+  • Superuser – Has all permissions.
+
+2. Groups:
+- Collection of users.
+- Used to assign permissions to multiple users at once.
+- Helps implement Role-Based Access Control (RBAC).
+
+Example:
+Instead of giving permissions to each user individually,
+create a group (e.g., Editor, Manager) and assign permissions
+to the group, then add users to that group.
+
+Django uses:
+- User model
+- Group model
+- Permission model
