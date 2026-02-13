@@ -71,3 +71,33 @@ Django uses:
 - User model
 - Group model
 - Permission model
+
+->Linking a table(app) with superuser
+Create a model in models.py(app)
+    from django.db import models
+
+# Create your models here.
+class Student(models.Model):
+
+    Branch_choices = [
+        ('CS', 'Computer Science'),
+        ('ELEC', 'Electronics'),
+        ('CIVIL', 'Civil Engineering')
+    ]
+
+    name = models.CharField(max_length = 100)
+    email = models.EmailField()
+    age = models.IntegerField()
+    branch = models.CharField(max_length = 20, choices = Branch_choices)
+
+    def __str__(self):
+        return self.name
+
+In admin.py
+    from django.contrib import admin
+    from .models import Student
+    # Register your models here.
+
+    @admin.register(Student)
+    class StudentAdmin(admin.ModelAdmin):
+        list_display = ('name', 'email', 'age', 'branch')
