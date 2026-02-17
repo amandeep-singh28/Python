@@ -24,6 +24,7 @@ urlpatterns = [
     # path('baigan/', views.say_hello),
     # path('', views.say_goodmorning),
     # path('', include('rolebasedaccess.urls')),
-    path('', include('grouprolebasedaccess.urls')),
+    # path('', include('grouprolebasedaccess.urls')),
+    path('', include('inventory.urls')),
     # path('app2/', include('app2.urls'))
 ]
