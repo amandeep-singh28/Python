@@ -232,3 +232,26 @@ JSON stores data as:
 It is easy for both frontend and backend systems to understand.
 
 Using django we will be creating end points(When we are creating views we are returning something that was template and under template there is url, that thing is end points).
+
+
+****Serializer.py****
+In Django REST Framework, a Serializer is responsible for:
+    Converting Python/Django model objects → JSON
+    Converting JSON → Python objects
+This process is called:
+Serialization → Object to JSON
+Deserialization → JSON to Object
+
+->Why do we need it??
+Client (frontend or Postman) communicates in JSON format.
+But Django works with:
+    Python objects
+    Model instances
+So Serializer acts like a translator between:
+Backend (Python objects) ↔ Client (JSON data)
+
+****Default Router****
+
+for every action you will be creating urls if you will not use this. We don't require different urls for get, update, delete method.
+
+In Django REST Framework, DefaultRouter automatically generates URLs for all CRUD operations when using ViewSets. It removes the need to manually create separate URLs for GET, POST, PUT, and DELETE methods.
