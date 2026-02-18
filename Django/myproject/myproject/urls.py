@@ -25,6 +25,7 @@ urlpatterns = [
     # path('', views.say_goodmorning),
     # path('', include('rolebasedaccess.urls')),
     # path('', include('grouprolebasedaccess.urls')),
-    path('', include('inventory.urls')),
+    # path('', include('inventory.urls')),
+    path('', include('CRUD.urls')),
     # path('app2/', include('app2.urls'))
 ]
