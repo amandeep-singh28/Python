@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "app",
     "rolebasedaccess",
-    "inventory"
+    "inventory",
+    "CRUD"
 ]
 
 MIDDLEWARE = [
