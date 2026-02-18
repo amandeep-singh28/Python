@@ -163,4 +163,72 @@ if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
-->Role Based Access    
+->Role Based Access
+
+****API(Application programming interface)****
+Middleware between frontend and backend
+DJANGO AND FLASK (Monolithic)
+
+For example -> Uber -> Book -> Location(Google maps -> Restricted access -> Work as API in Uber app)
+Ordering from Dominos and Zomato
+    We can order dominos from zomato(Third party apps), so dominos will have restricted access in zomato. It is linked with API. It contains data in JSON it only stores objects. Zomato is getting the data from the dominos
+
+****Refined(ChatGPT)*****
+
+->>>API (Application Programming Interface)
+-API is a communication bridge between two software systems.
+-It works as middleware between the frontend and backend, or between two different applications.
+-It allows applications to exchange data securely without giving direct access to internal systems.
+-Most modern APIs send data in JSON (JavaScript Object Notation) format.
+
+->>>>Django and Flask
+-Django and Flask are backend frameworks.
+-They are generally considered monolithic frameworks because:
+-Frontend and backend can exist in the same project.
+-They handle routing, business logic, database, and templates together.
+-However, they can also be used to build APIs that serve data to:
+    React frontend
+    Mobile applications
+    Other third-party systems
+
+Example 1: Uber and Google Maps
+When a user books a ride in Uber:
+Uber needs location and navigation services.
+Instead of building its own map system, Uber uses Google Maps API.
+Google provides:
+    Location data
+    Directions
+    Distance calculation
+Uber receives only restricted access to these services through the API.
+It does not access Google's internal system directly.
+
+API ensures:
+-Security
+-Controlled access
+-Structured communication
+
+Example 2: Domino’s and Zomato
+You can order Domino’s from Zomato even though they are separate companies.
+How it works:
+    Domino’s provides its menu and order system through an API.
+    Zomato connects to that API.
+    Zomato fetches menu data in JSON format.
+    When you place an order, Zomato sends the request back to Domino’s system using the API.
+    Zomato does not access Domino’s database directly.
+    It only accesses permitted data through the API.
+
+->>>>About JSON(Java Script object notation)
+JSON is a lightweight data format used in APIs.
+Example:
+    {
+    "restaurant": "Dominos",
+    "item": "Veg Pizza",
+    "price": 299
+    }
+JSON stores data as:
+    Key-value pairs
+    Objects
+    Structured information
+It is easy for both frontend and backend systems to understand.
+
+Using django we will be creating end points(When we are creating views we are returning something that was template and under template there is url, that thing is end points).
