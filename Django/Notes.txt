@@ -255,3 +255,53 @@ Backend (Python objects) ↔ Client (JSON data)
 for every action you will be creating urls if you will not use this. We don't require different urls for get, update, delete method.
 
 In Django REST Framework, DefaultRouter automatically generates URLs for all CRUD operations when using ViewSets. It removes the need to manually create separate URLs for GET, POST, PUT, and DELETE methods.
+
+
+****How Filtering works in Postman****
+If we search a product on amazon like iphone 17 pro than we are filtering on the basis of Apple, there can be also custom filtering like price range(Check on the url it will show the details on the basis of filtering that we are doing)
+
+-http://127.0.0.1:8000/api/products/?price=1000 {We want to do this}
+
+-Steps:-
+(i)Install django_filter(pipenv install django_filter)
+(ii)Add it in installed apps
+(iii)Add this also at the end of settings.py
+    REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS' : [
+        'django_filters.rest_framework.DjangoFilterBackend'
+        ]
+    }
+(iv)In views.py
+    class ProductViewSet(viewsets.ModelViewSet):
+    serializer_class = ProductSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['name', 'price'] 
+
+    def get_queryset(self):
+        queryset = Product.objects.all()
+        min_price = self.request.query_params.get('min_price')
+        max_price = self.request.query_params.get('max_price')
+
+        if min_price:
+            queryset = queryset.filter(price__gte = min_price)
+        if max_price:
+            queryset = queryset.filter(price__lte = max_price)
+        
+        return queryset
+(v)filterset_fields = ['name', 'price']
+    This allows filtering like this:
+        /products/?name=MacBook
+        /products/?price=1500
+
+(vi)?min_price=500&max_price=2000
+
+(vii)How to do ordering??
+    from rest_framework.filters import OrderingFilter
+    filter_backends = [OrderingFilter]
+
+    http://127.0.0.1:8000/api/products/?ordering=-price (High -> Low)
+    http://127.0.0.1:8000/api/products/?ordering=-price (Low -> High)
+
+
+Database(Data is already store and you can fetch from it) and python(Required all the data -> Copying of the data)
+Suppose the entries are in million so python will take logn time to respond because firstly it will do the copying of the data and than it will fetch but using Database it can respond quicklt
