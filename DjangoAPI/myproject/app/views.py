@@ -3,6 +3,7 @@ from .models import Product, Student, Prod
 from .serializers import ProductSerializer, StudentSerializer, ProdSerializer
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter, SearchFilter
+from rest_framework.permissions import IsAuthenticated
 
 # class ProductViewSet(viewsets.ModelViewSet):
 #     queryset = Product.objects.all()
@@ -15,8 +16,10 @@ class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
 
     filter_backends = [DjangoFilterBackend, OrderingFilter, SearchFilter]
-    filterset_fields = ['name', 'category', 'price', 'stock']
-    ordering_fields = ['name', 'price', 'stock']
+    filterset_fields = ['name', 'price']
+    # ordering_fields = ['name', 'price', 'stock']
+    # search_fields = ['name']
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         queryset = Product.objects.all()
