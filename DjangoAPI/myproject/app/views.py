@@ -2,7 +2,7 @@ from rest_framework import viewsets
 from .models import Product, Student, Prod
 from .serializers import ProductSerializer, StudentSerializer, ProdSerializer
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework.filters import OrderingFilter
+from rest_framework.filters import OrderingFilter, SearchFilter
 
 # class ProductViewSet(viewsets.ModelViewSet):
 #     queryset = Product.objects.all()
@@ -14,9 +14,9 @@ class ProductViewSet(viewsets.ModelViewSet):
     serializer_class = ProductSerializer
     queryset = Product.objects.all()
 
-    filter_backends = [DjangoFilterBackend]
-    ordering_backends = [OrderingFilter]
-    filterset_fields = ['name', 'price']
+    filter_backends = [DjangoFilterBackend, OrderingFilter, SearchFilter]
+    filterset_fields = ['name', 'category', 'price', 'stock']
+    ordering_fields = ['name', 'price', 'stock']
 
     def get_queryset(self):
         queryset = Product.objects.all()
@@ -38,9 +38,11 @@ class ProdViewSet(viewsets.ModelViewSet):
     queryset = Prod.objects.all()
     serializer_class = ProdSerializer
 
-    filter_backends = [DjangoFilterBackend]
-    ordering_backends = [OrderingFilter]
+    filter_backends = [DjangoFilterBackend, OrderingFilter, SearchFilter]
+
     filterset_fields = ['name', 'category', 'price', 'stock']
+    ordering_fields = ['name', 'price', 'stock']
+    search_fields = ['name']
 
     def get_queryset(self):
         queryset = Prod.objects.all()
