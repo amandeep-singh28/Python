@@ -8,5 +8,5 @@ class Product(models.Model):
 class Student(models.Model):
     student_name = models.CharField(max_length = 100)
     age = models.PositiveIntegerField()
-    email = models.EmailField(max_length = 10)
+    email = models.EmailField(max_length = 100)
     course = models.CharField(max_length = 100)
