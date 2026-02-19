@@ -2,13 +2,34 @@ from rest_framework import viewsets
 from .models import Product, Student
 from .serializers import ProductSerializer, StudentSerializer
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import OrderingFilter
+
+# class ProductViewSet(viewsets.ModelViewSet):
+#     queryset = Product.objects.all()
+#     serializer_class = ProductSerializer
+#     filter_backends = [DjangoFilterBackend]
+#     filterset_fields = ['name', 'price']
 
 class ProductViewSet(viewsets.ModelViewSet):
-    queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    queryset = Product.objects.all()
+
     filter_backends = [DjangoFilterBackend]
+    filter_backends = [OrderingFilter]
     filterset_fields = ['name', 'price']
 
+    def get_queryset(self):
+        queryset = Product.objects.all()
+        min_price = self.request.query_params.get('min_price')
+        max_price = self.request.query_params.get('max_price')
+
+        if min_price:
+            queryset = queryset.filter(price__gte = min_price)
+        if max_price:
+            queryset = queryset.filter(price__lte = max_price)
+        
+        return queryset
+    
 class StudentViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
