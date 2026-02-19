@@ -296,8 +296,8 @@ If we search a product on amazon like iphone 17 pro than we are filtering on the
 (vi)?min_price=500&max_price=2000
 
 (vii)How to do ordering??
-    from rest_framework.filters import OrderingFilter
-    filter_backends = [OrderingFilter]
+    filter_backends = [DjangoFilterBackend, OrderingFilter]
+    filterset_fields = ['name', 'category', 'price', 'stock']
 
     http://127.0.0.1:8000/api/products/?ordering=-price (High -> Low)
     http://127.0.0.1:8000/api/products/?ordering=-price (Low -> High)
@@ -305,3 +305,9 @@ If we search a product on amazon like iphone 17 pro than we are filtering on the
 
 Database(Data is already store and you can fetch from it) and python(Required all the data -> Copying of the data)
 Suppose the entries are in million so python will take logn time to respond because firstly it will do the copying of the data and than it will fetch but using Database it can respond quicklt
+
+
+****Pagination****
+(i)Add this in settings.py
+    'DEFAULT_PAGINATION_CLASS':'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 5,
