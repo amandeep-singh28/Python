@@ -311,3 +311,37 @@ Suppose the entries are in million so python will take logn time to respond beca
 (i)Add this in settings.py
     'DEFAULT_PAGINATION_CLASS':'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 5,
+
+JWT(JSON Web tokens)
+It is a way to authenticate users without storing session data on the server.
+It creates tokens but that token is not stored in database. You don't have to store every user data, you just create tokens.
+Pass to the server and server verifies it.
+When we use JWT, data is not stored in database
+After 15min token get destroyed, to solve this we use TokenRefreshView (Refresh token has some extra timing)
+(i)Firstly create superuser
+(ii)Add this in settings.py
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+(iii)Add this in urls.py
+    path('api/login/', TokenObtainPairView.as_view(), name = 'token_obtain_pair'),
+    path('api/refresh/', TokenRefreshView.as_view(), name = 'token_refresh'),
+(iv)Add this in views.py
+    from rest_framework.permissions import IsAuthenticated
+    class ProductViewSet(viewsets.ModelViewSet):
+        serializer_class = ProductSerializer
+        queryset = Product.objects.all()
+
+        filter_backends = [DjangoFilterBackend, OrderingFilter, SearchFilter]
+        filterset_fields = ['name', 'price']
+        permission_classes = [IsAuthenticated] <<<<<-- This should be added
+
+
+Header, Middle Body, Signature(Token divided into 3 parts, signature is verified after)
+
+
+****How Session Works****
+User logs in -> Server verifies -> Server create session in DB -> Server sends sessionid cookie -> Browser store cookie -> Every request sends sessionid -> Server checks DB -> User authenticated
