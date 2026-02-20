@@ -345,3 +345,58 @@ Header, Middle Body, Signature(Token divided into 3 parts, signature is verified
 
 ****How Session Works****
 User logs in -> Server verifies -> Server create session in DB -> Server sends sessionid cookie -> Browser store cookie -> Every request sends sessionid -> Server checks DB -> User authenticated
+
+
+->One to One Relationship in SQL
+
+CREATE TABLE User (
+    user_id INT Primary key,
+    user_name VARCHAR(30),
+    address VARCHAR(30)
+)
+
+CREATE TABLE UserPortfolio (
+    user_id INT Primary key, // Unique(unique), Primary Key(unique + not null)
+    cgpa INT,
+    course_name VARCHAR(30),
+    FOREIGN KEY(user_id) REFERENCES User(user_id)
+)
+
+->One to Many Relationship in SQL
+CREATE TABLE customer (
+    customer_id INT Primary Key,
+    customer_name VARCHAR(30),
+)
+CREATE TABLE Orders (
+    order_id INT PRIMARY KEY,
+    product_name VARCHAR(30),
+    customer_id INT,
+    FOREIGN KEY (customer_id) REFERENCES Customer(customer_id)
+);
+
+->Many to Many Relationship in SQL
+
+Whenever we create a many-to-many relationship:
+
+✔ We must create a third table
+✔ That table must contain foreign keys of both tables
+✔ We usually make those foreign keys a composite primary key
+
+CREATE TABLE Customer (
+    customer_id INT PRIMARY KEY,
+    customer_name VARCHAR(30)
+)
+
+CREATE TABLE Product (
+    product_id INT PRIMARY KEY,
+    product_name VARCHAR(30)
+)
+
+CREATE TABLE Orders (
+    customer_id INT,
+    product_id INT,
+    PRIMARY KEY (customer_id, product_id), // One A can have many B, One B can have many A, but both cannot be same
+    FOREIGN KEY (customer_id) REFERENCES Customer(customer_id),
+    FOREIGN KEY (product_id) REFERENCES Product(product_id)
+);
+
