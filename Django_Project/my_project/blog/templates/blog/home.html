@@ -1,0 +1,39 @@
+<h1>All Blogs</h1>
+
+{% if user.is_authenticated %}
+    <p>Welcome {{ user.username }}</p>
+    <a href="{% url 'create_blog' %}">Create Blog</a> |
+    <a href="{% url 'logout' %}">Logout</a>
+{% else %}
+    <a href="{% url 'login' %}">Login</a> |
+    <a href="{% url 'register' %}">Register</a>
+{% endif %}
+
+<hr>
+
+{% for blog in blogs %}
+    <h2>{{ blog.title }}</h2>
+    <p>{{ blog.content }}</p>
+    <small>By {{ blog.author.username }}</small>
+
+    {% if user == blog.author or user.is_superuser %}
+        <br>
+        <a href="{% url 'edit_blog' blog.id %}">Edit</a>
+        <a href="{% url 'delete_blog' blog.id %}">Delete</a>
+    {% endif %}
+
+    <h4>Comments:</h4>
+    {% for comment in blog.comments.all %}
+        <p>{{ comment.user.username }}: {{ comment.text }}</p>
+    {% endfor %}
+
+    {% if user.is_authenticated %}
+    <form method="POST" action="{% url 'add_comment' blog.id %}">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <button type="submit">Comment</button>
+    </form>
+    {% endif %}
+
+    <hr>
+{% endfor %}
