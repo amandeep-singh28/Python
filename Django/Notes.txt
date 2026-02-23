@@ -401,3 +401,34 @@ CREATE TABLE Orders (
 );
 
 ->Created a new Django_Relationship folder, in which various models are created using relationship and connected it with Postman
+
+****Introduction to JavaScript****
+
+Whole page is getting refreshed even if we want to update a small section(Django & Flask), This can be solved by JavaScript
+Programming language that is runned on web browser
+Create a html file, inside body reference it to the javascript file(That's how javascript works)
+
+****Different types of variables in javascript****
+(i)var - value can be changed and Can be reused again
+var abc = 123
+Not good practice in javascript
+For example:-
+    var abc = 123;
+    abc = 456;   // ✅ value can be changed
+    var abc = 789; // ✅ can be redeclared
+
+(ii)let - value can be updated and cannot be redeclared
+particular keyword got blocked
+let abc = 123
+value can be updated
+For example:-
+    let abc = 123;
+    abc = 456;   // ✅ value can be updated
+    // let abc = 789; ❌ cannot redeclare in same scope
+
+(iii)Const
+const abc = 123
+cannot be updated
+For example:-
+    const abc = 123;
+    // abc = 456; ❌ Error (cannot update)
