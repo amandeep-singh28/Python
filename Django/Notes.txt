@@ -445,3 +445,9 @@ For example:-
 console.log("5"+2) // It will do Concatenation because of the + sign
 console.log("5"-2) // Type conversion automatically
 console.log(typeof("5"-2)) // number
+
+->Difference between == and ==== in javascript
+== (It compares value not data type)
+==== (It strictly compare value and data type)
+console.log(5 == "5"); // true (string to number).
+console.log(5 === "5"); // false ==== does not allow type conversion
