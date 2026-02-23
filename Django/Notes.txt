@@ -432,3 +432,16 @@ cannot be updated
 For example:-
     const abc = 123;
     // abc = 456; ❌ Error (cannot update)
+
+****Types of Data Types in javascript****
+(i)Primitive Data type
+-These store single values and are immutable.
+-Example:- Number, String, Boolean, Undefined, Null, BigInt, Symbol
+(ii)Non-Primitive Data type
+-These store collections of values.
+-Example:- Object, Array, Function
+
+->Concatenation
+console.log("5"+2) // It will do Concatenation because of the + sign
+console.log("5"-2) // Type conversion automatically
+console.log(typeof("5"-2)) // number
