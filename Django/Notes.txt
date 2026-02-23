@@ -400,3 +400,4 @@ CREATE TABLE Orders (
     FOREIGN KEY (product_id) REFERENCES Product(product_id)
 );
 
+->Created a new Django_Relationship folder, in which various models are created using relationship and connected it with Postman
