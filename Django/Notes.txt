@@ -451,3 +451,19 @@ console.log(typeof("5"-2)) // number
 ==== (It strictly compare value and data type)
 console.log(5 == "5"); // true (string to number).
 console.log(5 === "5"); // false ==== does not allow type conversion
+
+->Taking input from the user
+let username = prompt("Enter username:")
+let password = Number(prompt("Enter password:"))
+
+->For loop syntax
+for (let i = 0; i < 10; i++) {
+    console.log(i);
+}
+
+->While loop syntax
+let i = 1;
+while (i <= 10) {
+    console.log(i);
+    i++;
+}
