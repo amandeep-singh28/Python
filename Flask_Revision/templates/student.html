@@ -20,6 +20,8 @@
             <td>{{student.age}}</td>
             <td>
                 <a href="{{ url_for('edit', sno = student.sno)}}">Edit</a>
+                <a href="{{ url_for('delete', sno = student.sno)}}">Delete</a>
+
             </td>
         </tr>
         {% endfor %}

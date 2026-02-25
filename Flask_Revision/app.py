@@ -58,3 +58,10 @@ def edit(sno):
         return redirect(url_for("students"))
 
     return render_template("form.html", student=student)
+
+@app.route("/delete/<int:sno>")
+def delete(sno):
+    student = Student.query.get_or_404(sno)
+    db.session.delete(student)
+    db.session.commit()
+    return redirect(url_for("students"))
