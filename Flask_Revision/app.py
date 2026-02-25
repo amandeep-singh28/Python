@@ -1,35 +1,34 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, request, redirect, url_for, render_template
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.secret_key = "amandeep"
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///details.db'
+db = SQLAlchemy(app)
 
-@app.route("/", methods = ["POST", "GET"])
-def home():
+class Student(db.Model):
+    sno = db.Column(db.Integer, primary_key = True)
+    username = db.Column(db.String(200), nullable = True)
+    age = db.Column(db.Integer, nullable = True)
+
+with app.app_context():
+    db.create_all()
+
+@app.route("/", methods = ["GET", "POST"])
+def register():
     error = None
 
     if request.method == "POST":
         name = request.form.get("username")
         age = request.form.get("age")
         
-        # Validation
         if not name:
             error = "Name is required"
         elif not age:
-            error = "Age is required"
+            age = "Age is required"
         else:
-            session["username"] = name
-            session["age"] = age
-            return redirect(url_for("details"))
-    
+            student = Student(username = name, age = int(age))
+            db.session.add(student)
+            db.session.commit()
+            return redirect(url_for("students"))
+        
     return render_template("form.html", error = error)
-
-@app.route("/details")
-def details():
-    if "username" in session and "age" in session:
-        name = session.get("username")
-        age = session.get("age")
-        return f"Hello {name}, you are {age} years old!"
-    
-
-if __name__ == "__main__":
-    app.run(debug = True)
