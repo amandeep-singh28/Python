@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 
 app = Flask(__name__)
+app.secret_key = "amandeep"
 
 @app.route("/", methods = ["POST", "GET"])
 def home():
@@ -16,15 +17,19 @@ def home():
         elif not age:
             error = "Age is required"
         else:
-            return redirect(url_for("details", username = name, age = age))
+            session["username"] = name
+            session["age"] = age
+            return redirect(url_for("details"))
     
     return render_template("form.html", error = error)
 
 @app.route("/details")
 def details():
-    name = request.args.get("username")
-    age = request.args.get("age")
-    return f"Hello {name}, you are {age} years old!"
+    if "username" in session and "age" in session:
+        name = session.get("username")
+        age = session.get("age")
+        return f"Hello {name}, you are {age} years old!"
+    
 
 if __name__ == "__main__":
     app.run(debug = True)
