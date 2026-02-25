@@ -32,3 +32,8 @@ def register():
             return redirect(url_for("students"))
         
     return render_template("form.html", error = error)
+
+@app.route("/students")
+def students():
+    student = Student.query.all()
+    return render_template("student.html", student = student)
