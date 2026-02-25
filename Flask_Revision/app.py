@@ -37,3 +37,24 @@ def register():
 def students():
     student = Student.query.all()
     return render_template("student.html", student = student)
+
+@app.route("/edit/<int:sno>", methods=["GET", "POST"])
+def edit(sno):
+    student = Student.query.get_or_404(sno)
+
+    if request.method == "POST":
+        name = request.form.get("username")
+        age = request.form.get("age")
+
+        if not name:
+            return "Name required"
+        if not age or not age.isdigit():
+            return "Valid age required"
+
+        student.username = name
+        student.age = int(age)
+
+        db.session.commit()
+        return redirect(url_for("students"))
+
+    return render_template("form.html", student=student)

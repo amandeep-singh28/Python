@@ -18,6 +18,9 @@
             <td>{{student.sno}}</td>
             <td>{{student.username}}</td>
             <td>{{student.age}}</td>
+            <td>
+                <a href="{{ url_for('edit', sno = student.sno)}}">Edit</a>
+            </td>
         </tr>
         {% endfor %}
     </table>
