@@ -1,0 +1,18 @@
+****23-03-2026****
+->VPC Fundamentals
+It stands for virtual(It is not physical) private cloud.
+Inside AWS we create our own network.
+Along with the infrastructure, AWS provides us private cloud which helps us to deploy our EC2 instances.
+
+If server would be in same place, than there will be no security, anyone could access them, No privacy.
+Using VPC each customer gets their own network inside AWS, their own IP address(range) and their own security.
+
+->CIDR + IP Addressing 
+Whenever u r creating your VPC, u need to decide your ID address range
+10.0.0.0/16 -> This is called CIDR notation
+
+10.0.0.0 -> Starting address
+16 -> Size of network
+Lesser the number(after /) -> Larger network
+More the number(after /) -> Smaller network
+
