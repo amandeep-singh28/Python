@@ -21,3 +21,16 @@ Smaller network inside VPC
 Inside AWS you created VPC and inside VPC there is Subnet.
 There is a big organization so you have stored the data on VPC and in organization there are various department so those departments represents Subnet.
 
+
+Subnet: 10.0.1.0/24
+
+- Total IPs = 256
+- AWS reserves 5 IP addresses
+- Usable IPs = 251
+
+Reserved IPs:
+- First IP (network address)
+- Second IP (VPC router)
+- Third IP (DNS)
+- Fourth IP (reserved by AWS)
+- Last IP (broadcast)
