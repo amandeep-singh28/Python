@@ -16,3 +16,8 @@ Whenever u r creating your VPC, u need to decide your ID address range
 Lesser the number(after /) -> Larger network
 More the number(after /) -> Smaller network
 
+->Subnet
+Smaller network inside VPC
+Inside AWS you created VPC and inside VPC there is Subnet.
+There is a big organization so you have stored the data on VPC and in organization there are various department so those departments represents Subnet.
+
