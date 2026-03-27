@@ -93,3 +93,21 @@ Now, if you will try to ping another EC2/Prod in EC2/Test, this will not work be
 
 ping 192.168.0.222 (Type this command in EC2/Test) -> Nothing will happened
 
+->Solution
+Go to VPC, there will be an option "PEERING CONNECTIONS".
+Go to Create Peering Connection named "Test-Prod-Peering"
+Now we are going to make a request from "Test/VPC" and acceptor is "Prod/VPC"
+VPC ID(Requestor) -> Test/VPC
+VPC ID(Acceptor) -> Prod/VPC
+After this we are required to accept this connection because anyone can request. Go to action and accept the request. Now the connection is made between the two VPCs.
+Now do you think, the connection is made now??
+If you will try again to ping Prod on EC2/Test. You will still not get connected. This is because, we also need to update our security groups.
+We have not allowed the traffic from Test/VPC and Prod/VPC(We have allowed the traffic from SSH and HTTP).
+Go to EC2/Prod and add the security group, "ALL ICMP-IPV4" and give IP as 172.16.0.0/16" which is your Test/VPC IP.
+Similarly do it for EC2/Test.
+
+Now, you also need to connect configure ROUTE TABLES
+Go to Test/VPC route table, Add route 192.168.0.0/16, Peering Connection
+Go to Prod/VPC route table, Add route 172.16.0.0/16, Peering Connection
+
+Now run the command "ping", CONNECTION SUCCESSFUL
