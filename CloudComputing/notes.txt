@@ -67,3 +67,15 @@ Enable the auto assign public IP(We want access from the public site)
 Give a rule(Type- HTTP and Source type- Anywhere)
 
 This will throw an error because there is no connection to the EC2. That's why we required Internet Gateway and Route table
+
+To fix this error, do the following things:
+-Creating IGW(Internet Gateway)
+Go to VPC, Create IGW named "Test/IGW"
+
+Now you are required to connect these together(IGW and route table)
+Go to route table, Create a route table name Route/Test, Select "Test" VPC
+So, this route table has been create for your VPC but there are no subnets associated with it.
+So, you required EC2 subnet association with the route table.
+Go to route table, Select Route/Test, Go to Subnet Association, Edit Subnet Association and select "Subnet Test", Save association.
+Now go to IGW, you will see "Test/IGW" is currently detached. Click on Internet gateway ID, Click on Actions, Attach to VPC, Select "TEST".
+Now you also need to connect the route table with Internet gateway because any traffic which comes through the IGW will be routed towards your VPC. Go to route table, Edit routes, Give 0.0.0.0/0(Means whole internet), Select Internet Gateway and your current IGW.
