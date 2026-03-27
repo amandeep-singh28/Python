@@ -79,3 +79,17 @@ So, you required EC2 subnet association with the route table.
 Go to route table, Select Route/Test, Go to Subnet Association, Edit Subnet Association and select "Subnet Test", Save association.
 Now go to IGW, you will see "Test/IGW" is currently detached. Click on Internet gateway ID, Click on Actions, Attach to VPC, Select "TEST".
 Now you also need to connect the route table with Internet gateway because any traffic which comes through the IGW will be routed towards your VPC. Go to route table, Edit routes, Give 0.0.0.0/0(Means whole internet), Select Internet Gateway and your current IGW.
+
+****VPC Peering (Connecting Two VPCs)****
+Create another EC2 instance like we have create before named "EC2/Prod"
+
+Test/VPC -> 172.16.0.0/16
+Prod/VPC -> 192.168.0.0/16
+
+Test IP -> 172.16.0.125
+Prod IP -> 192.168.0.222
+
+Now, if you will try to ping another EC2/Prod in EC2/Test, this will not work because we have not yet connected the both instances.
+
+ping 192.168.0.222 (Type this command in EC2/Test) -> Nothing will happened
+
