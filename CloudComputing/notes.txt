@@ -49,3 +49,21 @@ Give this (10.0.0.0/24)
 
 When we create a subnet with /24, it means that a block of 256 IP addresses 
 (from that /16 range) is allocated to that subnet.
+
+
+
+****AWS VPC Networking (Public Access to EC2)****
+-VPC
+Create a VPC named "TEST"
+IPV4 CIDR - 172.16.0.0/16
+
+Now we need subnets inside our "TEST" VPC
+Give a subnet name "SUBNET TEST"
+IPV4 CIDR - 172.16.0.0/24
+
+Now create a EC2 instance named "EC2/Test1"
+Under network settings, give the VPC(TEST) and Subnet(SUBNET TEST)
+Enable the auto assign public IP(We want access from the public site)
+Give a rule(Type- HTTP and Source type- Anywhere)
+
+This will throw an error because there is no connection to the EC2. That's why we required Internet Gateway and Route table
