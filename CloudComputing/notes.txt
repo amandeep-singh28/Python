@@ -140,3 +140,17 @@ Temporary access and that access is not permanenet.
 (iv)Policies
 It means rules
 
+****How we can implement IAM in real AWS system****
+Search IAM
+
+Click on user, create user named it as "LPU"(Click on AWS management console), type the password (lpu@1234), don't click on (User must create new password)
+Click Next, Don't create any group, click next, click next and create user. Click on EMAIL-SIGN IN instructions, you will get email.
+
+Once you got the email, you will get a link, click onto the link and use the credentials.
+
+You will see that you don't have any rights to do something.
+
+
+Create a group named "Developers", check "LPU" and give particular access(like EC2) and create it.
+
+And now check it, you will have access to EC2
