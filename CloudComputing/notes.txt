@@ -126,3 +126,17 @@ That's exactly what we are going to do on AWS
 
 Identity -> Who you are
 Access -> What you can do
+
+->IAM Components
+(i)User
+Multiple user cannot share account in IAM
+(ii)Group
+Team of users
+Suppose in your college, you have 25 students in your class. So teacher will not send the notes to each and every student. He will sent it in a group
+
+Group of developers with same permission. We can create only group of permission that can assigned to a person.
+(iii)Roles
+Temporary access and that access is not permanenet.
+(iv)Policies
+It means rules
+
