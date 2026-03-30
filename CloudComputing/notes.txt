@@ -118,3 +118,11 @@ Allowing the traffic in one direction
 In usual way, you have two direction. (EC2 -> <- Public)
 EC2 -> Route -> NAT -> IG -> Internet
 
+****IAM(Identity and access management)****
+When you share your phone, do you allow your friends to open everything??
+
+Trying to control the access, basically giving a very speicifc access to the person with whom you are sharing your phone
+That's exactly what we are going to do on AWS
+
+Identity -> Who you are
+Access -> What you can do
