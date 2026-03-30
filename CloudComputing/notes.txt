@@ -111,3 +111,10 @@ Go to Test/VPC route table, Add route 192.168.0.0/16, Peering Connection
 Go to Prod/VPC route table, Add route 172.16.0.0/16, Peering Connection
 
 Now run the command "ping", CONNECTION SUCCESSFUL
+
+
+****NAT Gateway****
+Allowing the traffic in one direction
+In usual way, you have two direction. (EC2 -> <- Public)
+EC2 -> Route -> NAT -> IG -> Internet
+
