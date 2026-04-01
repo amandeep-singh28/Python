@@ -224,3 +224,14 @@ Permission can come from multiple places. If any policy says deny the final answ
 If in User Policy -> Deny and Group Policy -> Allow than always DENY will get followed.
 If a user has two policy and one policy says deny, DENY will be followed.
 
+->Different types of policies
+(i)Managed Policy vs Inline Policy
+You create them once, you can attach them to multiple users, groups and roles.
+Inline policies they are directly attached to one user, and are not usable. It can used only once. These are only for one person or one user.
+
+(ii)AWS Managed vs Customer Managed
+These policies which are managed and created by AWS are called as AWS managed policies.(Ready Made policies which are already made in AWS but you don't have much control over the policies)
+Customer Managed policies are created by us like we created above using JSON. You have full control over the system.
+
+
+
