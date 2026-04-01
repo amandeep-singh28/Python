@@ -215,4 +215,12 @@ Now that particular user can only read.
 
 Click on particular policy, you can also see the JSON format for that policy
 
+->Some Rules
+If you see Deny in policy
+Deny will always win over any allowed function
+
+Permission can come from multiple places. If any policy says deny the final answer is always deny.
+
+If in User Policy -> Deny and Group Policy -> Allow than always DENY will get followed.
+If a user has two policy and one policy says deny, DENY will be followed.
 
