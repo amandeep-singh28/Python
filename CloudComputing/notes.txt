@@ -262,3 +262,8 @@ EC2 requires instance profile to use an IAM role
 Instance profile acts as a bridge between them.
 
 Instance profile are automatically connected. That instance profile you need to connect with your EC2.
+
+->Assigning role to EC2 
+Once you have create those role, you need to assign the role to EC2.
+Go to Instances, go to actions, security, modify IAM role, Attach the role.
+You have given temporary access to EC2 to read from s3 bucket.
