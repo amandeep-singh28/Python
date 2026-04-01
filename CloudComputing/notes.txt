@@ -154,3 +154,45 @@ You will see that you don't have any rights to do something.
 Create a group named "Developers", check "LPU" and give particular access(like EC2) and create it.
 
 And now check it, you will have access to EC2
+
+
+
+****About Policies****
+It is divided into 4 main parts:-
+(i)Effect
+It decides whether you have given the access or not.
+If you allow permission it is granted else not granted.
+It is written in JSON format
+{
+    "Effect" : "Allow" -> You have allowed the user to have the access
+}
+
+(ii)Action
+It defines what operations are allowed like read, delete, update and add data.
+You are telling just what action to be done.
+Example:-
+GetObject -> Read
+PutObject -> Add
+
+{
+    "Effect" : "Allow",
+    "Action" : "s3:GetObject"
+}
+
+(iii)Resource
+It tells us what object we are accessing, which object you are performing operations on.
+
+(iv)Condition
+We are just putting some conditions.
+Example:-
+Under what conditions access is allowed(Only during office hours)
+
+{
+    "Effect" : "Allow",
+    "Action" : "s3:GetObject",
+    "Resource" : "arn:aws:s3:::my-bucket/*",
+    "Condition" : {
+        "aws.SourceId" : "192.168.1.1"
+    }
+}
+
