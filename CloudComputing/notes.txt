@@ -192,7 +192,7 @@ Under what conditions access is allowed(Only during office hours)
     "Action" : "s3:GetObject",
     "Resource" : "arn:aws:s3:::my-bucket/*",
     "Condition" : {
-        "aws.SourceId" : "192.168.1.1"
+        "aws.SourceIp" : "192.168.1.1"
     }
 }
 
@@ -227,7 +227,7 @@ If a user has two policy and one policy says deny, DENY will be followed.
 ->Different types of policies
 (i)Managed Policy vs Inline Policy
 You create them once, you can attach them to multiple users, groups and roles.
-Inline policies they are directly attached to one user, and are not usable. It can used only once. These are only for one person or one user.
+Inline policy = usable but only attached to one entity. It can used only once. These are only for one person or one user.
 
 (ii)AWS Managed vs Customer Managed
 These policies which are managed and created by AWS are called as AWS managed policies.(Ready Made policies which are already made in AWS but you don't have much control over the policies)
@@ -238,7 +238,7 @@ Customer Managed policies are created by us like we created above using JSON. Yo
 -It is a Temporary Identity like no permanent access(Student). It is used for shorter tasks. It has expiry time 
 
 ->Important Point
-Roles can be assigned to services. If you attach a role to EC2, EC2 gets Temporary access. If we will not give then there will be a possibility for data leakage.
+Roles can be assigned to services. If you attach a role to EC2, EC2 gets Temporary access. Without roles → we store access keys → risk of leakage increases.
 
 "IAM Roles can be attached to services like EC2 to provide temporary credentials. This avoids hardcoding access keys, which improves security and reduces the risk of credential leakage."
 
@@ -261,7 +261,7 @@ If we do not use a role, then we would need to use access keys (credentials), wh
 EC2 requires instance profile to use an IAM role
 Instance profile acts as a bridge between them.
 
-Instance profile are automatically connected. That instance profile you need to connect with your EC2.
+Instance profile are automatically created. That instance profile you need to connect with your EC2.
 
 ->Assigning role to EC2 
 Once you have create those role, you need to assign the role to EC2.
