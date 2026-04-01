@@ -196,3 +196,23 @@ Under what conditions access is allowed(Only during office hours)
     }
 }
 
+****How can we create these policies in AWS****
+Click On IAM, policies, Create Policy, Click on JSON, and add this data.
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+    {
+        "Effect": "Allow",
+        "Action": "s3:GetObject",
+        "Resource": "arn:aws:s3:::my-bucket/*"
+    }
+]
+}
+
+Attach the policy to the user, Go to the user, click on LPU, Add Permission, Attach policies directly and search for it "s3ReadOnlyPolicy".
+Now that particular user can only read.
+
+Click on particular policy, you can also see the JSON format for that policy
+
+
