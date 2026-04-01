@@ -257,3 +257,8 @@ When you attach this role to EC2, it can access S3 without manually using creden
 
 If we do not use a role, then we would need to use access keys (credentials), which is not a secure practice.
 
+->Important Point(About Instance Profile)
+EC2 requires instance profile to use an IAM role
+Instance profile acts as a bridge between them.
+
+Instance profile are automatically connected. That instance profile you need to connect with your EC2.
