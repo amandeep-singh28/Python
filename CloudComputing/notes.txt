@@ -233,5 +233,10 @@ Inline policies they are directly attached to one user, and are not usable. It c
 These policies which are managed and created by AWS are called as AWS managed policies.(Ready Made policies which are already made in AWS but you don't have much control over the policies)
 Customer Managed policies are created by us like we created above using JSON. You have full control over the system.
 
+->User vs Roles
+-User is a full time like permanent access(Teacher).
+-It is a Temporary Identity like no permanent access(Student). It is used for shorter tasks. It has expiry time 
+
+
 
 
