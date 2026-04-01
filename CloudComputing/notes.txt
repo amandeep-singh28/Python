@@ -242,3 +242,18 @@ Roles can be assigned to services. If you attach a role to EC2, EC2 gets Tempora
 
 "IAM Roles can be attached to services like EC2 to provide temporary credentials. This avoids hardcoding access keys, which improves security and reduces the risk of credential leakage."
 
+****IAM Roles for EC2 (Accessing S3 without Credentials)****
+Go to IAM, click on roles, Create role, which entity you want to create role - temporary rights(Click AWS Service), Choose EC2, Click Next.
+Which permission that role can have, Select amazons3readyonlyaccess.
+Give role name and create role
+
+When we try to log in to an account, we require credentials.  
+Similarly, when accessing S3 (storage), credentials are required.  
+
+Here, we have created a role which provides temporary access.  
+This role gives read-only access permission to EC2 to access S3.  
+
+When you attach this role to EC2, it can access S3 without manually using credentials, because AWS automatically provides temporary credentials.  
+
+If we do not use a role, then we would need to use access keys (credentials), which is not a secure practice.
+
