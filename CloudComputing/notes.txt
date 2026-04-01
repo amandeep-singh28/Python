@@ -267,3 +267,15 @@ Instance profile are automatically connected. That instance profile you need to 
 Once you have create those role, you need to assign the role to EC2.
 Go to Instances, go to actions, security, modify IAM role, Attach the role.
 You have given temporary access to EC2 to read from s3 bucket.
+
+->How to verify
+Lauch the instance in which you have assigned that role and run this code.
+Firstly generate the token:-
+(i)TOKEN=$(curl -X PUT http://169.254.169.254/latest/api/token -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
+And then run this command:-
+(ii)curl -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/iam/info
+
+->Important Point
+If IMDSv2 is set to required, we must use a session token to access metadata. Without it, requests will fail.
+Go to EC2 instance, Actions, Instance settings, Modify instance metadata options
+
