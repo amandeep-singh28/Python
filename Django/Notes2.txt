@@ -206,3 +206,47 @@ Now our output becomes:-
 
 ->Important Point(Use Nested Serializer for get only, add the data through admin panel)
 "Nested serializers are primarily used for read operations. For write operations, we need to override create and update methods, which is why in practice we usually use IDs for POST and nested serializers for GET.”
+
+
+****Status Code****
+When your API responds, it sends two things:-
+(i)Data (JSON)
+(ii)Status code
+
+Example:-
+{
+    "name" : "amandeep"
+}
+Along with this, server also sends:
+201 created
+
+Code    Meaning     When to use 
+200	    OK	        GET success
+201	    Created	    POST success
+400	    Bad Request	Validation error
+404	    Not Found	Object not found
+
+->Implementation
+Add this in your views.py
+class StudentAPIView(APIView):
+
+    def get(self, request):
+        students = Student.objects.all()
+        serializer = StudentSerializer(students, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = StudentSerializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status = status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+
+When you will post the data, you will see HTTP_201_CREATED
+And when some validation gets failed, you will see HTTP_400_BAD_REQUEST. To perform this add this in serializer.py
+def validate_age(self, value):
+        if value < 18:
+            raise serializers.ValidationError("Age must be 18+")
+        return value
