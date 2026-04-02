@@ -250,3 +250,6 @@ def validate_age(self, value):
         if value < 18:
             raise serializers.ValidationError("Age must be 18+")
         return value
+
+->Difference between status code 200 and 201??
+“200 OK is returned for successful GET requests, while 201 Created is returned when a new resource is successfully created via POST.”
