@@ -8,3 +8,20 @@ It is a variable which we write in urls.py and inside this we write the url link
 A simple python function that handles request and returns response.
 Advantages:-Easy to understand, Good for small logic
 Disadvantages:-Code becomes messy in large projects
+
+->Class Based Views
+Same thing, but using classes
+
+from Django.views import View
+class HelloView(View):
+    def get(self, request):
+        return HttpResponse("Hello World from Class-Based-View")
+
+-URL for CBV
+from app.views import HelloView
+path('hello-cbv/', HelloView.as_view())
+
+What is as_view()?
+It converts class into a callable view function
+
+FBV is used in small projects but CBV is used in large projects
