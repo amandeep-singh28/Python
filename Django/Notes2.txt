@@ -168,3 +168,38 @@ class Profile(models.Model):
 
 What does on_delete=models.CASCADE do?
 “If the parent object (Teacher) is deleted, all related child objects (Students) will also be deleted.”
+
+
+->Showing Relationship in Serializers(IMP CONCEPT)
+Right now, what we did?
+We have just create two models(Teacher and Student) and the relationship was One To Many(One Teacher can taught many Students).
+So, in our Student model, another column will be made which will be "teacher_id"(Since it is connected).
+So, only ID is stored, not full teacher data.
+If, we call API we will get teacher_id = 1, but where are the details of that teacher, Who is teacher = 1??
+Than you will need another API call to get this.
+
+This problem is solved by nested Serializer...
+
+class TeacherSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Teacher
+        fields = '__all__'
+
+
+class StudentSerializer(serializers.ModelSerializer):
+    teacher = TeacherSerializer()   # 🔥 important
+
+    class Meta:
+        model = Student
+        fields = '__all__'
+
+Now our output becomes:-
+{
+  "id": 1,
+  "name": "Amandeep",
+  "age": 21,
+  "teacher": {
+    "id": 1,
+    "name": "Richa"
+  }
+}
