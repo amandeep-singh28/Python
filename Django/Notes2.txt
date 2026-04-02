@@ -1,0 +1,10 @@
+-Why do we use include()?
+To connect app-level URLs with project-level URLs
+
+-What is urlpatterns?
+It is a variable which we write in urls.py and inside this we write the url links which connects the view.
+
+****Function Based Views****
+A simple python function that handles request and returns response.
+Advantages:-Easy to understand, Good for small logic
+Disadvantages:-Code becomes messy in large projects
