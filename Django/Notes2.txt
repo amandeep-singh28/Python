@@ -80,3 +80,9 @@ Django rest framework is used to build APIs. Instead of returning a HTTP respons
 In Django, Normal View returns a HTML pages which are directly shown in the browser. But API view is used when we only want to send the data, not a full webpage. This data can be used by mobile apps or frontend frameworks like React to build the UI.
 Django Normal View - Data + UI
 Django API View - Only Data
+
+->Generic View
+GenericAPIView extends APIView and provides built-in functionality like queryset and serializer handling, making it easier to implement common CRUD operations with less code. It adds QuerySet and Serializer. Reduces Manual Work
+
+->ViewSet(Most Powerful)
+It handles all CRUD operations automatically
