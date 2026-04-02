@@ -104,3 +104,35 @@ Serializer does this for you.
 
 But Response also doing the conversion to JSON only, then why there is need for Serializers?
 Because Serializers also validates our data for each field. If in integer field we have typed a string, than it writes like "age must be of integer". And also it saves our data to the database
+
+
+->Types of Validation in Serializer
+(i)Field Level Validation
+Used when you want to validate a single field. It validates only ONE field at a time
+Syntax:- def validate_<fieldname>(self, value):
+Example:-
+class StudentSerializer(serializers.Serializer):
+    name = serializers.CharField()
+    age = serializers.IntegerField()
+
+    def validate_age(self, value):
+        if value < 18:
+            raise serializers.ValidationError("Age must be 18+")
+        return value
+
+(ii)Object Level Validation
+Used when validation depends on multiple fields
+Syntax:- def validate(self, data):
+Example:-
+class StudentSerializer(serializers.Serializer):
+    name = serializers.CharField()
+    password = serializers.CharField()
+    confirm_password = serializers.CharField()
+
+    def validate(self, data):
+        if data['password'] != data['confirm_password']:
+            raise serializers.ValidationError("Passwords must match")
+        return data
+
+->Important Point
+“We must call is_valid() before save() because it validates and prepares the data. Without it, validated_data is not available and DRF prevents saving invalid data.”
