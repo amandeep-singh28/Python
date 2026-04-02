@@ -90,3 +90,17 @@ It handles all CRUD operations automatically
 ->Why we send Response instead of HttpResponse in DRF??
 Because HttpResponse sends raw data, no automatic JSON handling. But Response automatically converts to JSON and it is also API friendly.
 We can also create APIs through HttpResponse but we have to manually do everything like converting data to JSON.
+
+
+****Serializers****
+It converts python object to JSON and vice versa.
+It does three important things:- (i)Validation (ii)Conversion and (iii)Save to database
+
+What is the need of this??
+It validates and structures the data.
+Django models are like this:- Student(name="Amandeep", age=21)
+But API need JSON structured data
+Serializer does this for you.
+
+But Response also doing the conversion to JSON only, then why there is need for Serializers?
+Because Serializers also validates our data for each field. If in integer field we have typed a string, than it writes like "age must be of integer". And also it saves our data to the database
