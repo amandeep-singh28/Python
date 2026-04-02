@@ -25,3 +25,48 @@ What is as_view()?
 It converts class into a callable view function
 
 FBV is used in small projects but CBV is used in large projects
+
+Example for FBV:-
+
+from django.http import JsonResponse
+import json
+
+students = [
+    {"id": 1, "name": "Aman"},
+    {"id": 2, "name": "Rahul"}
+]
+
+def student_view(request):
+
+    if request.method == "GET":
+        return JsonResponse(students, safe=False)
+
+    elif request.method == "POST":
+        body = json.loads(request.body)
+        students.append(body)
+        return JsonResponse({"message": "Student added"})
+
+Example for CBV:-
+
+from django.views import View
+from django.http import JsonResponse
+import json
+
+students = [
+    {"id": 1, "name": "Aman"},
+    {"id": 2, "name": "Rahul"}
+]
+
+class StudentView(View):
+
+    def get(self, request):
+        return JsonResponse(students, safe=False)
+
+    def post(self, request):
+        body = json.loads(request.body)
+        students.append(body)
+        return JsonResponse({"message": "Student added"})
+
+
+Conclusion:-
+“In FBV, handling multiple HTTP methods leads to large conditional blocks, making the code hard to maintain. CBVs solve this by mapping HTTP methods to class methods like get() and post(), resulting in cleaner and scalable code.”
