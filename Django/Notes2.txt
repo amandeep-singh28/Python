@@ -136,3 +136,35 @@ class StudentSerializer(serializers.Serializer):
 
 ->Important Point
 “We must call is_valid() before save() because it validates and prepares the data. Without it, validated_data is not available and DRF prevents saving invalid data.”
+
+****Relationship****
+Three types of relationships are there:-
+(i)Foreign Key (One to Many)
+One teacher -> Many students
+
+class Teacher(models.Model):
+    name = models.CharField(max_length = 100)
+class Student(models.Model):
+    name = models.CharField(max_length = 100)
+    teacher = models.ForeignKey(Teacher, on_delete = models.CASCADE)
+
+(ii)Many to Many
+One student -> Many Course
+One Course -> Many students
+
+class Course(models.Model):
+    name = models.CharField(max_length=100)
+
+class Student(models.Model):
+    name = models.CharField(max_length=100)
+    courses = models.ManyToManyField(Course)
+
+(iii)One to One
+One user -> One Profile
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+
+What does on_delete=models.CASCADE do?
+“If the parent object (Teacher) is deleted, all related child objects (Students) will also be deleted.”
