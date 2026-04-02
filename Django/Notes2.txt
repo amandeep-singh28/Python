@@ -86,3 +86,7 @@ GenericAPIView extends APIView and provides built-in functionality like queryset
 
 ->ViewSet(Most Powerful)
 It handles all CRUD operations automatically
+
+->Why we send Response instead of HttpResponse in DRF??
+Because HttpResponse sends raw data, no automatic JSON handling. But Response automatically converts to JSON and it is also API friendly.
+We can also create APIs through HttpResponse but we have to manually do everything like converting data to JSON.
