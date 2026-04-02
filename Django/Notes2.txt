@@ -203,3 +203,6 @@ Now our output becomes:-
     "name": "Richa"
   }
 }
+
+->Important Point(Use Nested Serializer for get only, add the data through admin panel)
+"Nested serializers are primarily used for read operations. For write operations, we need to override create and update methods, which is why in practice we usually use IDs for POST and nested serializers for GET.”
