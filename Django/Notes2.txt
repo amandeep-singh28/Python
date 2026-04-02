@@ -253,3 +253,26 @@ def validate_age(self, value):
 
 ->Difference between status code 200 and 201??
 “200 OK is returned for successful GET requests, while 201 Created is returned when a new resource is successfully created via POST.”
+
+****Authentication VS Authorization****
+Authentication means "Who are you?", login, token and session
+Authorization means "What are you allowed to do?"
+
+->DRF Permissions
+(i)IsAuthenticated
+from rest_framework.permissions import IsAuthenticated
+(ii)Add in your views.py
+permission_classes = [IsAuthenticated]
+(iii)IsAdminUser -> Only admin can access
+permission_classes = [IsAuthenticated]
+(iv)Add this in settings.py
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
+
+->How to test it??
+Open admin panel and log it in as admin, and if you try to get the data, you will get result.
+But if you are logged out from the admin panel, you will not get the data.
+
