@@ -342,3 +342,12 @@ Target tracking-> Maintains target value automatically, If traffic is more when 
 
 "Target Tracking Scaling automatically maintains a specified metric (like CPU utilization) at a target value. When traffic increases and the metric goes above the target, it scales out (adds instances). When traffic decreases and the metric goes below the target, it scales in (removes instances)"
 
+->Step Scaling
+Step Scaling is an Auto Scaling policy where scaling actions are performed in steps based on predefined thresholds. As the metric (like CPU utilization) increases, the number of instances added also increases step by step.
+
+50 - 60% -> +1 instances
+60 - 75% -> +2 instances
+75% -> +3 instance
+
+Increasing instances step by step.
+
