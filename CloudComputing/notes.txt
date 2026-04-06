@@ -279,3 +279,12 @@ And then run this command:-
 If IMDSv2 is set to required, we must use a session token to access metadata. Without it, requests will fail.
 Go to EC2 instance, Actions, Instance settings, Modify instance metadata options
 
+
+****Scaling****
+Increasing or decreasing the resources based on demand.
+
+->Why it is required>??
+Imagine you are creating a website and you are getting 100 users on it, and also you are making reels on instagram and your reel got viral and now 10k users are there on your website. What will happen??
+Your website can crash
+
+So, in this scenarios we use Scaling
