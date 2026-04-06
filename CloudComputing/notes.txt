@@ -303,3 +303,7 @@ You have gone to a big super market, if there are less only 1 counter is opened 
 ->Advantages & Disadvantages of horizontal and vertical Scaling
 If one system fails, whole system gets failed(Vertical).
 But in Horizontal we are adding more machines, in case 1 fails we will still be having others. When you are working on Horizontal, you will be using LOAD BALANCER(Traffic gets divided equally)
+
+
+In AWS we have Auto Scaling, we don't need to create manually. You requires, your configuration accordingly it will remove and add the servers based on demand.
+
