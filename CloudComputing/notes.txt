@@ -330,3 +330,15 @@ So, Launch template will be having your AMI
 AWS uses Launch Templates to define how EC2 instances should be created. A Launch Template includes AMI, instance type, security groups, key pair, storage, and user data. Auto Scaling Groups use this template to automatically launch instances when needed.
 
 We, don't need any configuration errors(Consistency) on any other server that can be created in the future.
+
+****Add/Remove Servers****
+If CPU consumption > 70% -> Add instances
+CPU < 30% -> Remove instances
+
+If we will not define rules than it can result in CPU overload which is not good.
+
+It is managed by our policies:-
+Target tracking-> Maintains target value automatically, If traffic is more when to scale like it basically tracks a value and we define some rule.
+
+"Target Tracking Scaling automatically maintains a specified metric (like CPU utilization) at a target value. When traffic increases and the metric goes above the target, it scales out (adds instances). When traffic decreases and the metric goes below the target, it scales in (removes instances)"
+
