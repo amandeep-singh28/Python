@@ -307,3 +307,10 @@ But in Horizontal we are adding more machines, in case 1 fails we will still be 
 
 In AWS we have Auto Scaling, we don't need to create manually. You requires, your configuration accordingly it will remove and add the servers based on demand.
 
+->Auto Scaling groups
+Auto Scaling Groups: Suppose you have an application and it suddenly goes viral. The traffic increases significantly, which may cause the app to crash. This problem can be solved using Auto Scaling Groups, which automatically add more instances to handle the increased load.
+It has following features:
+(i)Desired capacity -> Intially how many servers you want
+(ii)Minimum capacity(Lowest number of instances)
+
+
