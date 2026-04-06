@@ -300,3 +300,6 @@ You are adding more machine instead of upgrading one.
 For example:-
 You have gone to a big super market, if there are less only 1 counter is opened and if there is a huge rush multiple counters are opened.
 
+->Advantages & Disadvantages of horizontal and vertical Scaling
+If one system fails, whole system gets failed(Vertical).
+But in Horizontal we are adding more machines, in case 1 fails we will still be having others. When you are working on Horizontal, you will be using LOAD BALANCER(Traffic gets divided equally)
