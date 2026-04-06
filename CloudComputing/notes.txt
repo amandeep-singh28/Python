@@ -351,3 +351,10 @@ Step Scaling is an Auto Scaling policy where scaling actions are performed in st
 
 Increasing instances step by step.
 
+->Scheduled Scaling
+Scheduled Scaling automatically increases or decreases the number of instances at predefined times.\
+
+Every day at 8 PM → traffic increases 📈
+👉 Add more instances
+Every night at 2 AM → traffic drops 📉
+👉 Remove instances
