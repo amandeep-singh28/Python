@@ -287,4 +287,16 @@ Increasing or decreasing the resources based on demand.
 Imagine you are creating a website and you are getting 100 users on it, and also you are making reels on instagram and your reel got viral and now 10k users are there on your website. What will happen??
 Your website can crash
 
-So, in this scenarios we use Scaling
+So, in this scenarios we use Scaling(Increasing the resources)
+
+->Types of Scaling in AWS
+(i)Vertical Scaling
+Increasing the power of the single machine
+For example:-
+You have CPU, 4gb ram and you are increasing your RAM to 16gb
+
+(ii)Horizontal Scaling
+You are adding more machine instead of upgrading one.
+For example:-
+You have gone to a big super market, if there are less only 1 counter is opened and if there is a huge rush multiple counters are opened.
+
