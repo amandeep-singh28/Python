@@ -314,3 +314,19 @@ It has following features:
 (ii)Minimum capacity(Lowest number of instances)
 
 
+****How should AWS know what type of server we should launch??****
+That is done using Launch Template
+
+AMI(Amazon Machine Image) -> Preconfigured template that can be used to create EC2 instance.
+
+So, Launch template will be having your AMI
+-AMI
+-Instance Type
+-Key Pair
+-Security Groups
+-Storage
+-User data
+
+AWS uses Launch Templates to define how EC2 instances should be created. A Launch Template includes AMI, instance type, security groups, key pair, storage, and user data. Auto Scaling Groups use this template to automatically launch instances when needed.
+
+We, don't need any configuration errors(Consistency) on any other server that can be created in the future.
