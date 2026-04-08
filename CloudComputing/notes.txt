@@ -377,3 +377,6 @@ Select default VPC and choose 2 subnets
 Desired capacity = 2
 Minimum capacity = 1
 Maximum capacity = 3
+
+-Important Point
+Since your desired capacity is 2, so 2 instance will keep running forever until your ASG exists. Even if you try to delete 1 instance it will create again.
