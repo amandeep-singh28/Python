@@ -380,3 +380,14 @@ Maximum capacity = 3
 
 -Important Point
 Since your desired capacity is 2, so 2 instance will keep running forever until your ASG exists. Even if you try to delete 1 instance it will create again.
+
+****Load Balancer(Important)****
+It distributes incoming traffic across multiple servers(Instances)
+It prevents one server from getting overloaded
+
+⚙️ How It Works (Step-by-Step)
+User sends request (opens your website)
+Request goes to Load Balancer
+Load Balancer checks available instances
+Sends request to one of them
+Response comes back to user
