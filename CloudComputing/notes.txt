@@ -391,3 +391,13 @@ Request goes to Load Balancer
 Load Balancer checks available instances
 Sends request to one of them
 Response comes back to user
+
+->Types of Load Balancer
+(i)Application Load Balancer
+works at HTTP/HTTPS layer 7
+
+(ii)Network load balancer
+
+(iii)Classic load balancer
+
+Even after using these things, large websites can still be slow, because we don't know how much traffic can come to our website.
