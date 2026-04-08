@@ -370,3 +370,10 @@ Just launch a blank template
 
 This launch template should be connected to your scaling group
 
+Create Auto Scaling Group
+Give name, select launch template
+Select default VPC and choose 2 subnets
+
+Desired capacity = 2
+Minimum capacity = 1
+Maximum capacity = 3
