@@ -360,3 +360,13 @@ Every night at 2 AM → traffic drops 📉
 👉 Remove instances
 
 
+****08-04-2026****
+EC2 -> severs -> Load balancer -> Auto Scaling groups
+
+How to implement??
+Create a launch template, give it a name, select AMI as UBUNTU, instance type (free tier), create security group SG1 → Select default VPC, HTTP source anywhere, type SSH
+Go to advanced details and you can write script which is of user data (Skip that)
+Just launch a blank template
+
+This launch template should be connected to your scaling group
+
